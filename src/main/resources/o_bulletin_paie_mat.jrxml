@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="o_bulletin_paie_mat" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="com.bgi.grh.bundles.JasperBundle" uuid="97d5cd6c-1621-46e5-9f52-f1ca402fced1">
+	<property name="ireport.zoom" value="1.1269722013523664"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="COD_USER" class="java.lang.String"/>
+	<parameter name="COD_SOC" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Titre" class="java.lang.String"/>
+	<parameter name="REF_ISO" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\PARTAGE\\rapport_grh_AFI\\header\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="bulletin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dat" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="rpt_id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mat1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mat2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT distinct nvl(pk_edition.CF_lib_moisFormula($P{bulletin}, $P{dat}),'') as bul_lib,
+b.cod_lieu_geog,
+ b.cod_serv,
+ P.MAT_PERS
+  from view_bulletin b, personnel p
+ where b.cod_soc =$P{COD_SOC}
+   and b.dt_bul = last_day(to_date($P{dat}, 'mm/yyyy'))
+   and b.cod_typ_bul = nvl($P{bulletin}, b.cod_typ_bul)
+   and b.mat_pers not like 'A%'
+   and b.cod_soc = p.cod_soc
+   and b.mat_pers = p.mat_pers
+   and p.mat_pers between nvl($P{mat1}, p.mat_pers) and nvl($P{mat2}, p.mat_pers)
+   and p.mat_pers  in (select mat_pers from tmp_bulletin_paie where rpt_id=$P{rpt_id})
+ order by b.cod_lieu_geog, b.cod_serv, p.mat_pers]]>
+	</queryString>
+	<field name="BUL_LIB" class="java.lang.String"/>
+	<field name="COD_LIEU_GEOG" class="java.lang.String"/>
+	<field name="COD_SERV" class="java.lang.String"/>
+	<field name="MAT_PERS" class="java.lang.String"/>
+	<group name="mat_pers" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{MAT_PERS}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<subreport>
+					<reportElement x="0" y="0" width="555" height="50" uuid="3fdfd9bb-5856-4f8e-8894-d7e7a6d2a04c"/>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="dat">
+						<subreportParameterExpression><![CDATA[$P{dat}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="COD_SOC">
+						<subreportParameterExpression><![CDATA[$P{COD_SOC}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="mat">
+						<subreportParameterExpression><![CDATA[$F{MAT_PERS}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="rpt_id">
+						<subreportParameterExpression><![CDATA[$P{rpt_id}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="bulletin">
+						<subreportParameterExpression><![CDATA[$P{bulletin}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "o_bulletin_paie_matSub.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<pageHeader>
+		<band height="62" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="62" uuid="64fb8d46-400d-4fb6-ade0-10dc25b74d44"/>
+				<subreportParameter name="Titre">
+					<subreportParameterExpression><![CDATA[$P{Titre}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REF_ISO">
+					<subreportParameterExpression><![CDATA[$P{REF_ISO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PageNumber">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="COD_SOC">
+					<subreportParameterExpression><![CDATA[$P{COD_SOC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PageTotal"/>
+				<subreportParameter name="COD_USER">
+					<subreportParameterExpression><![CDATA[$P{COD_USER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "XliaSubreport.jasper"]]></subreportExpression>
+			</subreport>
+			<textField evaluationTime="Report">
+				<reportElement x="480" y="51" width="27" height="11" uuid="c9f7b115-db0a-409c-af0f-4939e827a1dd"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>

@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="o_bulletin_paie_matSub" language="groovy" pageWidth="555" pageHeight="555" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8a510ef2-3974-43b4-90d9-f03a970e47eb">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<style name="table" mode="Opaque">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineColor="#000000"/>
+			<bottomPen lineWidth="0.0" lineColor="#000000"/>
+			<rightPen lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineColor="#0033FF"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineColor="#0033FF"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2" backcolor="#FFFFFF" fill="Solid">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineColor="#0033FF"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineColor="#0033FF"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="BulletinDataset" uuid="794dddc7-5673-4ea2-ada4-f20543e343a7">
+		<parameter name="COD_SOC" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="mat_pers" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="rpt_id" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="FORMATMASK" class="java.lang.String"/>
+		<parameter name="FORMATaux" class="java.lang.String"/>
+		<parameter name="typ_bul" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="p_dat" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT mat_pers,
+abrv_fixe1,
+rpt_id,
+lib3,
+dt_bul,
+cod_typ_bul,
+cod_niv,
+num_niv,
+mnt3,
+assiette,
+taux,
+abrv_fixe,
+lib1,
+par_abrv_fixe,
+cod_niv1,
+num_niv1,
+mnt1,
+net_paie,
+pk_edition.NOMBREFormula($P{COD_SOC},
+                                     $P{p_dat} ,
+                                     $P{typ_bul} ,
+                                      t.abrv_fixe,
+                                      t.mat_pers) nombre,
+pk_edition.sduFormula($P{COD_SOC},
+                                   t.mat_pers,
+                                  $P{typ_bul} ,
+                                  $P{p_dat} ) as salaire,
+pk_edition.sduFormula($P{COD_SOC},
+                                   t.mat_pers,
+                                  $P{typ_bul} ,
+                                  $P{p_dat} )salaire_net,
+pk_edition.sbrutFormula( $P{COD_SOC},
+                        t.mat_pers    ,
+                        $P{typ_bul} ,
+                        $P{p_dat}) as  sal_brut
+from tmp_bulletin_paie t
+WHERE mat_pers=$P{mat_pers}
+order by mat_pers]]>
+		</queryString>
+		<field name="MAT_PERS" class="java.lang.String"/>
+		<field name="ABRV_FIXE1" class="java.lang.String"/>
+		<field name="RPT_ID" class="java.math.BigDecimal"/>
+		<field name="LIB3" class="java.lang.String"/>
+		<field name="DT_BUL" class="java.lang.String"/>
+		<field name="COD_TYP_BUL" class="java.lang.String"/>
+		<field name="COD_NIV" class="java.lang.String"/>
+		<field name="NUM_NIV" class="java.lang.String"/>
+		<field name="MNT3" class="java.math.BigDecimal"/>
+		<field name="ASSIETTE" class="java.math.BigDecimal"/>
+		<field name="TAUX" class="java.math.BigDecimal"/>
+		<field name="ABRV_FIXE" class="java.lang.String"/>
+		<field name="LIB1" class="java.lang.String"/>
+		<field name="PAR_ABRV_FIXE" class="java.lang.String"/>
+		<field name="COD_NIV1" class="java.lang.String"/>
+		<field name="NUM_NIV1" class="java.lang.String"/>
+		<field name="MNT1" class="java.math.BigDecimal"/>
+		<field name="NET_PAIE" class="java.math.BigDecimal"/>
+		<field name="NOMBRE" class="java.math.BigDecimal"/>
+		<field name="SALAIRE" class="java.math.BigDecimal"/>
+		<field name="SALAIRE_NET" class="java.math.BigDecimal"/>
+		<field name="SAL_BRUT" class="java.math.BigDecimal"/>
+		<variable name="sum_gain" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{MNT1}]]></variableExpression>
+		</variable>
+		<variable name="sum_retenue" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{MNT3}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="COD_SOC" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\PARTAGE\\rapport_grh_AFI\\header\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="rpt_id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dat" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="bulletin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mat" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT distinct
+ pk_edition.CF_lib_moisFormula($P{bulletin}, $P{dat}) as bul_lib,
+(select Val1 from format_mask where lib='FormatDatePattern') formatdate,
+(select Val1 from format_mask where lib='FormatNumberJasper') formatMask,
+(select Val1 from format_mask where lib='PatternTauxJasper') PatternTaux,
+P.MAT_PERS,
+                NOM_PERS || ' ' || PREN_PERS NOM_PREN,
+                B.DT_BUL,
+                B.COD_TYP_BUL,
+                b.cod_dept,
+                b.cod_serv,
+                b.cod_fonct,
+                p.qualf,
+                b.cod_categ,
+                b.cod_cat,
+                b.cod_ech,
+                b. cod_grad,
+                p.dat_categ,
+                to_char(p.dat_cat, 'dd/mm/yyyy') datc,
+                to_char(p.dat_grad, 'dd/mm/yyyy') datg,
+                to_char(p.dat_ech, 'dd/mm/yyyy') datec,
+                substr(COMPTE_DOMI, 1, 2) COD_BANQ,
+                substr(COMPTE_DOMI, 3, 3) COD_AGC,
+                b.COMPTE_DOMI CPT_BANQ_PERS,
+                b.NBR_ENF,
+                b.CHARG_ENF,
+                b.CHARG_ALL,
+                p.num_retr,
+                p.cod_motif,
+                decode(b.CHEF_FAM, 'N', 'Non', 'O', 'Oui') CHEF_FAM,
+                to_char(p.dat_emb, 'dd/mm/yyyy') dateb,
+                b.COD_LIEU_GEOG,
+                p.ADM_TECH,
+                b.niv_sal,
+                p.MAT_PERS NUM_ASSUR,
+                b.COD_AFFECT,
+                b.cod_class,
+(pk_edition.sit_enfFormula(p.cod_soc,b.dt_bul,p.mat_pers,b.cod_typ_bul ) ) as sit_fam,
+ (pk_edition.servicebyCodeServ(b.cod_soc,b.cod_serv)) as serv,
+pk_edition.sit_enfFormula(p.cod_soc,
+                            $P{dat} ,
+                          p.mat_pers ,
+                          $P{bulletin}) as sitFam,
+pk_edition.CF_adm_techFormula(p.adm_tech) as lib_adm_tech,
+pk_edition.CF_lib_gradeFormula(b.cod_categ,b.cod_cat ,b.cod_grad) lib_grade,
+ pk_edition.CF_affectFormula(p.COD_AFFECT ) as affect,
+ pk_edition.sduFormula($P{COD_SOC},
+                                   p.mat_pers,
+                                 $P{bulletin} ,
+                                $P{dat}  ) as salaire,
+pk_edition.sduFormula($P{COD_SOC},
+                                   p.mat_pers,
+                                $P{bulletin} ,
+                                 $P{dat} )salaire_net,
+ pk_edition.sbrutFormula( $P{COD_SOC},
+                        p.mat_pers    ,
+                       $P{bulletin}  ,
+                        $P{dat}) as  sal_brut,
+ pk_edition.SNETFormula(p.cod_soc,
+                                    p.mat_pers,
+                                    b.cod_typ_bul,
+                                   $P{dat} ) as salaireNet
+  from view_bulletin b, personnel p
+ where b.cod_soc =$P{COD_SOC}
+   and b.dt_bul = last_day(to_date($P{dat}, 'mm/yyyy'))
+   and b.cod_typ_bul = nvl($P{bulletin}, b.cod_typ_bul)
+   and b.cod_soc = p.cod_soc
+   and b.mat_pers = p.mat_pers
+   and p.mat_pers =$P{mat}
+ order by b.cod_lieu_geog, b.cod_serv, p.mat_pers]]>
+	</queryString>
+	<field name="BUL_LIB" class="java.lang.String"/>
+	<field name="FORMATDATE" class="java.lang.String"/>
+	<field name="FORMATMASK" class="java.lang.String"/>
+	<field name="PATTERNTAUX" class="java.lang.String"/>
+	<field name="MAT_PERS" class="java.lang.String"/>
+	<field name="NOM_PREN" class="java.lang.String"/>
+	<field name="DT_BUL" class="java.sql.Timestamp"/>
+	<field name="COD_TYP_BUL" class="java.lang.String"/>
+	<field name="COD_DEPT" class="java.lang.String"/>
+	<field name="COD_SERV" class="java.lang.String"/>
+	<field name="COD_FONCT" class="java.lang.String"/>
+	<field name="QUALF" class="java.lang.String"/>
+	<field name="COD_CATEG" class="java.lang.String"/>
+	<field name="COD_CAT" class="java.lang.String"/>
+	<field name="COD_ECH" class="java.math.BigDecimal"/>
+	<field name="COD_GRAD" class="java.lang.String"/>
+	<field name="DAT_CATEG" class="java.sql.Timestamp"/>
+	<field name="DATC" class="java.lang.String"/>
+	<field name="DATG" class="java.lang.String"/>
+	<field name="DATEC" class="java.lang.String"/>
+	<field name="COD_BANQ" class="java.lang.String"/>
+	<field name="COD_AGC" class="java.lang.String"/>
+	<field name="CPT_BANQ_PERS" class="java.lang.String"/>
+	<field name="NBR_ENF" class="java.math.BigDecimal"/>
+	<field name="CHARG_ENF" class="java.lang.String"/>
+	<field name="CHARG_ALL" class="java.lang.String"/>
+	<field name="NUM_RETR" class="java.lang.String"/>
+	<field name="COD_MOTIF" class="java.lang.String"/>
+	<field name="CHEF_FAM" class="java.lang.String"/>
+	<field name="DATEB" class="java.lang.String"/>
+	<field name="COD_LIEU_GEOG" class="java.lang.String"/>
+	<field name="ADM_TECH" class="java.lang.String"/>
+	<field name="NIV_SAL" class="java.math.BigDecimal"/>
+	<field name="NUM_ASSUR" class="java.lang.String"/>
+	<field name="COD_AFFECT" class="java.lang.String"/>
+	<field name="COD_CLASS" class="java.lang.String"/>
+	<field name="SIT_FAM" class="java.lang.String"/>
+	<field name="SERV" class="java.lang.String"/>
+	<field name="SITFAM" class="java.lang.String"/>
+	<field name="LIB_ADM_TECH" class="java.lang.String"/>
+	<field name="LIB_GRADE" class="java.lang.String"/>
+	<field name="AFFECT" class="java.lang.String"/>
+	<field name="SALAIRE" class="java.math.BigDecimal"/>
+	<field name="SALAIRE_NET" class="java.math.BigDecimal"/>
+	<field name="SAL_BRUT" class="java.math.BigDecimal"/>
+	<field name="SALAIRENET" class="java.math.BigDecimal"/>
+	<group name="GMatPers" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{MAT_PERS}]]></groupExpression>
+	</group>
+	<detail>
+		<band height="228" splitType="Stretch">
+			<frame>
+				<reportElement x="2" y="0" width="550" height="228" forecolor="#000000" uuid="bfc76ef9-d385-4fae-8a1b-60b6ba0f0e46"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="61" y="88" width="163" height="15" uuid="1c28a529-f97a-4e1d-ba26-8b5639574065"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{LIB_ADM_TECH}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="321" y="89" width="120" height="15" uuid="462bb6f9-f0d4-4b52-9c23-f7b077241533"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="8" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{LIB_GRADE}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="127" width="550" height="1" forecolor="#000000" uuid="68653801-9693-46ec-b6e5-02c6cc15f29f"/>
+				</line>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="284" y="88" width="37" height="15" uuid="d670aabd-dd43-496f-b50f-8d9fe5d7ecf0"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{COD_GRAD}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="320" y="73" width="223" height="15" uuid="59fba9bf-29b6-4738-a3cd-8ebddacf787e"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SERV}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="355" y="58" width="134" height="15" uuid="ee6ceb92-3619-4750-a701-4961fdc7d9a0"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NBR_ENF}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="349" y="43" width="140" height="15" uuid="54a6020b-4a30-43b1-9243-5170deadb7cc"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NUM_RETR}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="320" y="28" width="230" height="15" uuid="ae2ac40e-2956-474f-bc82-a9a38a897015"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NOM_PREN}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="78" y="103" width="146" height="15" uuid="597cd90d-bedc-4cbc-9713-f3c9ba898a87"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CPT_BANQ_PERS}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="61" y="73" width="163" height="15" uuid="0bb06617-9d6c-4bad-996b-e93317cacd47"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{AFFECT}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="113" y="58" width="111" height="15" uuid="0a77ec54-3c6e-4693-8569-96c7edc3ec5b"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SITFAM}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" pattern="" isBlankWhenNull="true">
+					<reportElement x="113" y="43" width="111" height="15" uuid="10184b78-518b-4096-a0d0-c24b15f93f46"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{DATEB}]]></textFieldExpression>
+					<patternExpression><![CDATA[$F{FORMATDATE}]]></patternExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="508" y="88" width="34" height="13" uuid="6f9f0edd-61a8-4e51-a61a-d0111427ad4f"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{COD_ECH}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="61" y="28" width="163" height="15" uuid="a9d08c6b-fc3c-45ba-a3c7-d1aec786f9b7"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MAT_PERS}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="78" y="0" width="363" height="20" uuid="5811904b-97d7-4e53-b3e7-15b819a75d1a"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{BUL_LIB}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="23" width="550" height="1" forecolor="#000000" uuid="e7296796-9299-4209-91ba-a1b97b9092b7"/>
+				</line>
+				<frame>
+					<reportElement x="0" y="128" width="550" height="100" uuid="51582bef-d367-4dd6-bb94-310778f47148"/>
+					<box>
+						<pen lineColor="#000000"/>
+						<topPen lineWidth="0.5" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineColor="#000000"/>
+					</box>
+					<subreport>
+						<reportElement x="1" y="0" width="237" height="100" uuid="32ca4df5-04c0-4112-98e9-11233e8b1c93"/>
+						<subreportParameter name="SUBREPORT_DIR">
+							<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="cod_soc">
+							<subreportParameterExpression><![CDATA[$P{COD_SOC}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="date_view">
+							<subreportParameterExpression><![CDATA[$P{dat}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="cod_typ_bull">
+							<subreportParameterExpression><![CDATA[$P{bulletin}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="mat_pers">
+							<subreportParameterExpression><![CDATA[$F{MAT_PERS}]]></subreportParameterExpression>
+						</subreportParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						<subreportExpression><![CDATA["C:\\Users\\VOSTRO\\Desktop\\fiche de paie\\rapport_grh\\header\\o_bulletin_paie_mat_BEA_subreport1.jasper"]]></subreportExpression>
+					</subreport>
+					<subreport>
+						<reportElement x="239" y="0" width="311" height="100" uuid="c4c201ad-c03a-4d15-a469-420c55a3e2c8"/>
+						<subreportParameter name="SUBREPORT_DIR">
+							<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="cod_soc">
+							<subreportParameterExpression><![CDATA[$P{COD_SOC}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="date_view">
+							<subreportParameterExpression><![CDATA[$P{dat}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="cod_typ_bull">
+							<subreportParameterExpression><![CDATA[$P{bulletin}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="mat_pers">
+							<subreportParameterExpression><![CDATA[$F{MAT_PERS}]]></subreportParameterExpression>
+						</subreportParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						<subreportExpression><![CDATA["C:\\Users\\VOSTRO\\Desktop\\fiche de paie\\rapport_grh\\header\\o_bulletin_paie_mat_BEA_subreport2.jasper"]]></subreportExpression>
+					</subreport>
+					<line>
+						<reportElement stretchType="RelativeToTallestObject" x="143" y="0" width="1" height="100" forecolor="#000000" uuid="44b9ded3-878c-4420-a7ba-d458a5d88e5d"/>
+					</line>
+					<line>
+						<reportElement stretchType="RelativeToTallestObject" x="209" y="0" width="1" height="100" forecolor="#000000" uuid="8030468f-8335-4eb0-9b5e-1402afb4d9a8"/>
+					</line>
+					<line>
+						<reportElement stretchType="RelativeToTallestObject" x="238" y="0" width="1" height="100" forecolor="#000000" uuid="11d038c9-dfeb-4317-910d-15d898ee52f8"/>
+					</line>
+					<line>
+						<reportElement stretchType="RelativeToTallestObject" x="363" y="0" width="1" height="100" forecolor="#000000" uuid="2ccafa33-e064-43cc-819c-7991ddd40f17"/>
+					</line>
+					<line>
+						<reportElement stretchType="RelativeToTallestObject" x="424" y="0" width="1" height="100" forecolor="#000000" uuid="dfdf1865-c2ba-431f-910e-c1c24d6a339f"/>
+					</line>
+					<line>
+						<reportElement stretchType="RelativeToTallestObject" x="486" y="0" width="1" height="100" forecolor="#000000" uuid="83918f7e-2f49-413b-80e9-237a84f32f44"/>
+					</line>
+				</frame>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="55">
+			<frame>
+				<reportElement x="2" y="0" width="550" height="29" uuid="6ad57ee3-b0f4-434f-bcf5-222097ae7536"/>
+				<box>
+					<pen lineColor="#000000"/>
+					<topPen lineWidth="0.5" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement x="487" y="0" width="62" height="29" uuid="2f1e8249-d42c-4f98-acfb-2649007610e5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+						<paragraph rightIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SALAIRENET}]]></textFieldExpression>
+					<patternExpression><![CDATA[$F{FORMATMASK}]]></patternExpression>
+				</textField>
+				<line>
+					<reportElement stretchType="RelativeToTallestObject" x="486" y="0" width="1" height="29" forecolor="#000000" uuid="5270b12f-8f8d-4a38-b37e-806c606e402b"/>
+				</line>
+			</frame>
+		</band>
+	</pageFooter>
+</jasperReport>

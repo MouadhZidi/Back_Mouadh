@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="XliaSubreport" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="D:\PARTAGE\rapport_grh\Jasperfile\com\bgi\grh\bundles\jasperBundle_fr" uuid="6d0f3886-4dbc-4281-bcde-116f6040da7d">
+	<property name="ireport.zoom" value="1.5000000000000038"/>
+	<property name="ireport.x" value="132"/>
+	<property name="ireport.y" value="0"/>
+	<import value="org.apache.commons.codec.binary.Base64"/>
+	<parameter name="Titre" class="java.lang.String"/>
+	<parameter name="REF_ISO" class="java.lang.String"/>
+	<parameter name="PageNumber" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="COD_SOC" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PageTotal" class="java.lang.Integer"/>
+	<parameter name="COD_USER" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+       (select ref_iso from PARAM_ETAT where (nom_etat) = ($P{REF_ISO})) Numero_ISO,
+     s.lib_soc,
+     (select Val1 from format_mask where lib='FormatDatePattern') formatdate,
+       (select ref_as from PARAM_ETAT where nom_etat =$P{REF_ISO} ) ref_as,
+       (select version_iso from PARAM_ETAT where (nom_etat) = $P{REF_ISO}) VERSION_ISO,
+       nvl((select USE_MATRICULE || ' - ' || substr(use_lname, 1, 10) ||
+                  substr(use_fname, 1, 10)
+             from admuser
+            where use_id =$P{COD_USER} ),
+           ' ') UserName,
+   (select date_iso from PARAM_ETAT where (nom_etat) =$P{REF_ISO} ) DATE_ISO,
+   (select prm_charval from genparam where prm_name='LOGO_SOCIETE') LOGO_SOCIETE,
+  lib_soc
+  from societe s
+ where s.cod_soc = $P{COD_SOC}]]>
+	</queryString>
+	<field name="NUMERO_ISO" class="java.lang.String"/>
+	<field name="LIB_SOC" class="java.lang.String"/>
+	<field name="FORMATDATE" class="java.lang.String"/>
+	<field name="REF_AS" class="java.lang.String"/>
+	<field name="VERSION_ISO" class="java.lang.String"/>
+	<field name="USERNAME" class="java.lang.String"/>
+	<field name="DATE_ISO" class="java.sql.Timestamp"/>
+	<field name="LOGO_SOCIETE" class="java.lang.String"/>
+	<title>
+		<band height="58" splitType="Stretch">
+			<rectangle>
+				<reportElement x="3" y="2" width="550" height="56" uuid="3a4bb914-1e39-465c-9df4-7eaf9aba1dd6"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<line>
+				<reportElement x="409" y="2" width="1" height="56" uuid="3bde346e-cfaa-4f0f-9541-26cfd81adefc"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="151" y="2" width="1" height="56" uuid="74c4dfba-1168-465b-9fb1-b53c2a37e3f5"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="410" y="16" width="142" height="1" uuid="61b244a5-2b99-46d4-9884-f2840879276f"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="410" y="30" width="142" height="1" uuid="616df6bd-0187-4380-a35b-55c898219996"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<lastPageFooter>
+		<band height="15"/>
+	</lastPageFooter>
+</jasperReport>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sub" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fc238df4-72e4-4a03-93af-4a4f9c402037">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT nom_pers from personnel where mat_pers='10908']]>
+	</queryString>
+	<field name="NOM_PERS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NOM_PERS"/>
+		<property name="com.jaspersoft.studio.field.label" value="NOM_PERS"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="120" y="44" width="300" height="66" uuid="9dcdccb5-c262-49d3-8454-0939b38f85ad"/>
+				<textFieldExpression><![CDATA[$F{NOM_PERS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

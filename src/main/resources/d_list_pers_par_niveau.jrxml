@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="d_list_pers_par_niveau" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="D:\PARTAGE\rapport_grh\Jasperfile\com\bgi\grh\bundles\jasperBundle_fr" uuid="bf73de0b-1d8f-42b5-b2bf-f370ab801547">
+	<property name="ireport.zoom" value="0.8250000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="ListePersParNiveau" uuid="c9fa5ab9-201f-49a2-aea5-aa27e281fbd1">
+		<parameter name="COD_NIVEAU_DEB" class="java.lang.String"/>
+		<parameter name="COD_NIVEAU_FIN" class="java.lang.String"/>
+		<parameter name="COD_SOC" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT ALL P.MAT_PERS,
+           P.NOM_PERS || ' ' || P.PREN_PERS,
+           NIV.COD_NIVEAU,
+           NIV.CODE_DOMAINE,
+           NIV.CODE_OPTION,
+           PN.COD_NIVEAU,
+           PN.LIB_NIVEAU,
+           GRADE.ABRV_GRAD1,
+           OP.LIB_OPTION,
+           LISTE_DOMAINE.LIB_DOMAINE
+  FROM PERSONNEL     P,
+       NIVEAU_PERS   NIV,
+       PARAM_NIVEAU  PN,
+       GRADE,
+       OPTION_DIPLOM OP,
+       LISTE_DOMAINE
+ WHERE ((P.COD_GRAD = GRADE.COD_GRAD) AND (P.COD_CAT = GRADE.COD_CAT) AND
+       (P.COD_CATEG = GRADE.COD_CATEG) AND (P.MAT_PERS = NIV.MAT_PERS) AND
+       (P.COD_SOC = NIV.COD_SOC) AND (NIV.COD_NIVEAU = PN.COD_NIVEAU) AND
+       (NIV.CODE_OPTION = OP.CODE_OPTION(+)) AND
+       (NIV.CODE_DOMAINE = LISTE_DOMAINE.CODE_DOMAINE(+)))
+   and niv.cod_niveau=$P{COD_NIVEAU_DEB}]]>
+		</queryString>
+		<field name="MAT_PERS" class="java.lang.String"/>
+		<field name="P.NOM_PERS||&apos;&apos;||P.PREN_PERS" class="java.lang.String"/>
+		<field name="COD_NIVEAU" class="java.lang.String"/>
+		<field name="CODE_DOMAINE" class="java.lang.String"/>
+		<field name="CODE_OPTION" class="java.lang.String"/>
+		<field name="LIB_NIVEAU" class="java.lang.String"/>
+		<field name="ABRV_GRAD1" class="java.lang.String"/>
+		<field name="LIB_OPTION" class="java.lang.String"/>
+		<field name="LIB_DOMAINE" class="java.lang.String"/>
+		<variable name="countMatPersParNiveau" class="java.math.BigDecimal" incrementType="Report" calculation="Count">
+			<variableExpression><![CDATA[$F{MAT_PERS}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="COD_USER" class="java.lang.String"/>
+	<parameter name="COD_SOC" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Titre" class="java.lang.String"/>
+	<parameter name="REF-ISO" class="java.lang.String"/>
+	<parameter name="PageTotal" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\VOSTRO\\Documents\\Eclipse workspace\\portailBack\\src\\main\\resources\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="COD_NIVEAU_DEB" class="java.lang.String"/>
+	<parameter name="COD_NIVEAU_FIN" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT ALL P.MAT_PERS,
+           P.NOM_PERS || ' ' || P.PREN_PERS,
+           NIV.COD_NIVEAU,
+           NIV.CODE_DOMAINE,
+           NIV.CODE_OPTION,
+           PN.COD_NIVEAU,
+           PN.LIB_NIVEAU,
+           GRADE.ABRV_GRAD1,
+           OP.LIB_OPTION,
+           LISTE_DOMAINE.LIB_DOMAINE
+  FROM PERSONNEL     P,
+       NIVEAU_PERS   NIV,
+       PARAM_NIVEAU  PN,
+       GRADE,
+       OPTION_DIPLOM OP,
+       LISTE_DOMAINE
+ WHERE ((P.COD_GRAD = GRADE.COD_GRAD) AND (P.COD_CAT = GRADE.COD_CAT) AND
+       (P.COD_CATEG = GRADE.COD_CATEG) AND (P.MAT_PERS = NIV.MAT_PERS) AND
+       (P.COD_SOC = NIV.COD_SOC) AND (NIV.COD_NIVEAU = PN.COD_NIVEAU) AND
+       (NIV.CODE_OPTION = OP.CODE_OPTION(+)) AND
+       (NIV.CODE_DOMAINE = LISTE_DOMAINE.CODE_DOMAINE(+)))
+   and niv.cod_niveau between nvl($P{COD_NIVEAU_DEB}, niv.cod_niveau) and
+       nvl($P{COD_NIVEAU_FIN}, niv.cod_niveau)]]>
+	</queryString>
+	<field name="MAT_PERS" class="java.lang.String"/>
+	<field name="P.NOM_PERS||&apos;&apos;||P.PREN_PERS" class="java.lang.String"/>
+	<field name="COD_NIVEAU" class="java.lang.String"/>
+	<field name="CODE_DOMAINE" class="java.lang.String"/>
+	<field name="CODE_OPTION" class="java.lang.String"/>
+	<field name="LIB_NIVEAU" class="java.lang.String"/>
+	<field name="ABRV_GRAD1" class="java.lang.String"/>
+	<field name="LIB_OPTION" class="java.lang.String"/>
+	<field name="LIB_DOMAINE" class="java.lang.String"/>
+	<group name="G_Niveau_Pers">
+		<groupExpression><![CDATA[$F{COD_NIVEAU}]]></groupExpression>
+		<groupHeader>
+			<band height="97">
+				<textField isBlankWhenNull="true">
+					<reportElement x="57" y="10" width="100" height="15" uuid="a8b88809-1423-4d66-8a0c-779caa32e762"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{COD_NIVEAU}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="57" y="25" width="420" height="15" uuid="24d7bcf0-d86c-43c3-aac3-c43c7f8f1a33"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{LIB_NIVEAU}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2" y="10" width="55" height="15" uuid="9883c478-1bad-4427-824f-c6a0b0a4d316"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{label.niveaux}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="2" y="25" width="60" height="15" uuid="c9607de1-2089-42a0-ae4e-db33ae1fc107"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{label.libNiveau}]]></textFieldExpression>
+				</textField>
+				<componentElement>
+					<reportElement key="table 3" style="table 3" x="0" y="47" width="555" height="50" uuid="c7a4d2c3-1649-495d-b26f-3d93d7303646"/>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="ListePersParNiveau" uuid="e3a12ab9-66d2-4f02-8047-6e6614e5195e">
+							<datasetParameter name="COD_NIVEAU_DEB">
+								<datasetParameterExpression><![CDATA[$F{COD_NIVEAU}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="COD_NIVEAU_FIN">
+								<datasetParameterExpression><![CDATA[$P{COD_NIVEAU_FIN}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:columnGroup width="554" uuid="fad51056-e28e-443d-8173-e3fa1046a6eb">
+							<jr:columnFooter height="20" rowSpan="1">
+								<rectangle>
+									<reportElement x="0" y="0" width="554" height="20" uuid="a020bbec-7ddf-491e-a2a2-d60ee88f3dfa"/>
+								</rectangle>
+								<textField isBlankWhenNull="true">
+									<reportElement x="424" y="0" width="80" height="20" uuid="431839c3-f351-4104-9b16-99c379ed5e92"/>
+									<box>
+										<rightPen lineWidth="0.5"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Arial" size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$R{label.effectif}]]></textFieldExpression>
+								</textField>
+								<textField isBlankWhenNull="true">
+									<reportElement x="504" y="0" width="50" height="20" uuid="ecd59736-d61e-483f-a40b-8d3d5f8b2931"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="Arial" size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{countMatPersParNiveau}]]></textFieldExpression>
+								</textField>
+							</jr:columnFooter>
+							<jr:column width="67" uuid="133040c3-97f0-453d-bca2-c53b4473156e">
+								<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement x="0" y="0" width="67" height="30" uuid="8fe266f4-c06f-45be-bae5-6b8af09707e7"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+											<font fontName="Arial"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$R{Label.mat}]]></textFieldExpression>
+									</textField>
+								</jr:columnHeader>
+								<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement x="0" y="0" width="67" height="20" uuid="30fffe4f-80f0-46b6-bdf6-14be1f7f0a60"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font fontName="Arial"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{MAT_PERS}]]></textFieldExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+							<jr:column width="132" uuid="17858120-4624-496a-9f2f-36cf74d28905">
+								<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement x="0" y="0" width="132" height="30" uuid="18de78ef-67a0-475c-a987-31a649b40282"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+											<font fontName="Arial"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$R{Label.nomPnom}]]></textFieldExpression>
+									</textField>
+								</jr:columnHeader>
+								<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement x="0" y="0" width="132" height="20" uuid="e73d24da-d0ef-477d-9b3b-2562f3c1fd58"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font fontName="Arial"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{P.NOM_PERS||''||P.PREN_PERS}]]></textFieldExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+							<jr:column width="74" uuid="640a394e-35dc-4e02-93da-160851d0378c">
+								<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement x="0" y="0" width="74" height="30" uuid="0e5b7d3a-29e6-4a4c-975d-a52069500e1b"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+											<font fontName="Arial"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$R{label.abrvGrade}]]></textFieldExpression>
+									</textField>
+								</jr:columnHeader>
+								<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement x="0" y="0" width="74" height="20" uuid="cf2196f9-96f6-46fc-8fa7-ecda6a4c7135"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font fontName="Arial"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{ABRV_GRAD1}]]></textFieldExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+							<jr:column width="133" uuid="5535438f-a935-4991-9aa6-73cfd61c558a">
+								<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement x="0" y="0" width="133" height="30" uuid="cad69193-5753-4eb5-9c8c-073eaadae3a8"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+											<font fontName="Arial"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$R{label.domaineNiv}]]></textFieldExpression>
+									</textField>
+								</jr:columnHeader>
+								<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement x="0" y="0" width="133" height="20" uuid="761d8742-e0db-4a58-b80b-4598b7bc4e6c"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font fontName="Arial"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{LIB_DOMAINE}]]></textFieldExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+							<jr:column width="148" uuid="2ff757ff-562f-4b05-b71e-d08c26b58ff1">
+								<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement x="0" y="0" width="148" height="30" uuid="b2a0d045-416b-4607-b89c-7ca61d301519"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+											<font fontName="Arial"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$R{label.optionNiveau}]]></textFieldExpression>
+									</textField>
+								</jr:columnHeader>
+								<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
+									<textField isBlankWhenNull="true">
+										<reportElement x="0" y="0" width="148" height="20" uuid="db8322be-d1cd-4221-ab59-f877d7a6e1e0"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font fontName="Arial"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{LIB_OPTION}]]></textFieldExpression>
+									</textField>
+								</jr:detailCell>
+							</jr:column>
+						</jr:columnGroup>
+					</jr:table>
+				</componentElement>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="60" uuid="9f0f473b-9533-45fb-b2cd-258a5e4db40f"/>
+				<subreportParameter name="PageTotal"/>
+				<subreportParameter name="PageNumber">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="COD_SOC">
+					<subreportParameterExpression><![CDATA[$P{COD_SOC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REF_ISO">
+					<subreportParameterExpression><![CDATA[$P{REF-ISO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="COD_USER">
+					<subreportParameterExpression><![CDATA[$P{COD_USER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="Titre">
+					<subreportParameterExpression><![CDATA[$P{Titre}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "XliaSubreport.jasper"]]></subreportExpression>
+			</subreport>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement x="476" y="44" width="27" height="14" uuid="a409cc81-cea0-4b29-984b-d22564c39446"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>
